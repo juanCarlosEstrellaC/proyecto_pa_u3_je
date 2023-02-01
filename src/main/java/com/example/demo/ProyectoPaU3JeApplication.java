@@ -20,7 +20,7 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		//Consultas
 		// consultar por nombre:
 		Estudiante e = this.iEstudianteService.buscarPorNombreQuery("Alberto");
 		System.out.println(e);
