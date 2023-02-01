@@ -25,7 +25,21 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 		Estudiante e = this.iEstudianteService.buscarPorNombreQuery("Alberto");
 		System.out.println(e);
 		
+		// consultar por apellido:
+		e = this.iEstudianteService.buscarPorApellidoQuery("Estrella");
+		System.out.println(e);		
 		
+		// consultar por genero:
+		e = this.iEstudianteService.buscarPorGeneroQuery("M");
+		System.out.println(e);	
+		
+		// consultar por cedula:
+		e = this.iEstudianteService.buscarPorCedulaQuery("1723522403");
+		System.out.println(e);	
+		
+		// consultar por apellido:
+		e = this.iEstudianteService.buscarPorCiudadQuery("Quito");
+		System.out.println(e);	
 		
 	}
 
