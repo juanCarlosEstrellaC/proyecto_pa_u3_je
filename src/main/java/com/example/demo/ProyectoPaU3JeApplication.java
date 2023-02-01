@@ -21,17 +21,11 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-//		Estudiante e1 = new Estudiante();
-//		e1.setNombre("Juan");
-//		e1.setApellido("Estrella");
-//		e1.setCedula("123456789");
-//		e1.setCiudad("Quito");
-		
-		// ingresar estudiante:
-		
 		// consultar por nombre:
-		Estudiante e = this.iEstudianteService.buscarPorNombre("Alberto");
+		Estudiante e = this.iEstudianteService.buscarPorNombreQuery("Alberto");
 		System.out.println(e);
+		
+		
 		
 	}
 
