@@ -8,4 +8,7 @@ public interface IClienteRentService {
 	public void actualizar(ClienteRent clienteRent);
 	public ClienteRent encontrar(Integer id);
 	public void eliminar(Integer id);
+	
+	public ClienteRent buscarCedulaQuery(String cedula);
+
 }

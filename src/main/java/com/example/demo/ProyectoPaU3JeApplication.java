@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.modelo.ClienteRent;
 import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.Renta;
 import com.example.demo.modelo.VehiculoRent;
 import com.example.demo.repository.IClienteRentRepository;
 import com.example.demo.service.IClienteRentService;
@@ -36,6 +37,8 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//SI ESTÁ VALIENDO TAL CUAL, PERO ME GUSTARÍA TRAER LAS LISTAS ACÁ 
+		
 		VehiculoRent miVehiculo = new VehiculoRent();
 		miVehiculo.setPlaca("AAA");
 		miVehiculo.setColor("Rojo");
@@ -57,8 +60,21 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 		miCliente.setFechaNacimiento(LocalDateTime.of(1990, 10, 6, 0, 0));
 //		this.iClienteRentService.guardar(miCliente);
 		
-		this.iRentaService.ingresarRenta(miVehiculo2.getPlaca(), miCliente.getCedula());
+		ClienteRent miCliente2 = new ClienteRent();
+		miCliente2.setNombre("Josseline");
+		miCliente2.setApellido("Ponce");
+		miCliente2.setCedula("95123654");
+		miCliente2.setFechaNacimiento(LocalDateTime.of(2000, 10, 6, 0, 0));
+		//this.iClienteRentService.guardar(miCliente2);
 		
+		//this.iRentaService.ingresarRenta(miVehiculo.getPlaca(), miCliente2.getCedula());
+		
+		ClienteRent clientebuscado = this.iClienteRentService.buscarCedulaQuery(miCliente.getCedula());
+		
+		for (Renta renta  : clientebuscado.getMiListaRentas()) {
+			System.out.println(renta.getFecha());
+		}
+
 		
 	}
 

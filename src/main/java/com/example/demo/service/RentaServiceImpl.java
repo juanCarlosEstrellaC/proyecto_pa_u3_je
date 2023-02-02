@@ -57,9 +57,6 @@ public class RentaServiceImpl implements IRentaService {
 		
 		this.iRentaRepository.insertar(miRenta);
 		
-		for (Renta renta : listaRentaClient) {
-			System.out.println(renta.getFecha());
-		}
 	}
 
 

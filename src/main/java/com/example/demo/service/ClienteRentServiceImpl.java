@@ -32,4 +32,9 @@ public class ClienteRentServiceImpl implements IClienteRentService {
 		this.iClienteRentRepository.borrar(id);
 	}
 
+	@Override
+	public ClienteRent buscarCedulaQuery(String cedula) {
+		return this.iClienteRentRepository.buscarCedulaQuery(cedula);
+	}
+
 }
