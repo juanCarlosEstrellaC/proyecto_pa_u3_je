@@ -33,16 +33,22 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 		SpringApplication.run(ProyectoPaU3JeApplication.class, args);
 	}
 
+	
+	/** NOTA:
+	 1. Creo, para cada inserción, un objeto de vehículo y cliente nuevo, no reciclo el objeto 
+        cambiando los valores e ingresando de nuevo.
+        Aunque, cabe recalcar que, si seteo al mismo objeto, cuando lo mande a guardar será uno nuevo, por 
+	    lo que se pordría reciclar el objeto anterior. En este caso, puede tener los mismos datos, excepto la 
+	    cédula, y la placa, respectivamente, puesto que ese parámetro se usa en la búsqueda por cédula y placa, 
+	 	  y el query retorna solo un elemento, por lo que no puede estar duplicado.
+     2. Cada vehículo y cada cliente tiene su propia lista de Rentas, la creo y la seteo para c/u aquí.
+     3. Una vez insertados los vehículos y clientes, realizo las rentas. Claro, que podría crear un nuevo 
+        vehículo o cliente e insertarlo, pero así es más ordenado.
+	 4. No usé cascada en los padres.
+	 */
 	@Override
 	public void run(String... args) throws Exception {
-		
-	// 1. Creo, para cada inserción, un objeto de vehículo y cliente nuevo, no reciclo el objeto 
-    //    cambiando los valores e ingresando de nuevo.
-    // 2. Cada vehículo y cada cliente tiene su propia lista de Rentas, la creo y la seteo para c/u aquí.
-    // 3. Una vez insertados los vehículos y clientes, realizo las rentas. Claro, que podría crear un nuevo 
-    //    vehículo o cliente e insertarlo, pero así es más ordenado.
-	// 4. No usé cascada en los padres.
-	
+
 	// Vehiculos:
 		
 		VehiculoRent miVehiculo1 = new VehiculoRent();
@@ -69,9 +75,9 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	// Clientes:
 		
 		ClienteRent miCliente1 = new ClienteRent();
-		miCliente1.setNombre("Manolo");
-		miCliente1.setApellido("Manrique");
-		miCliente1.setCedula("12345678");
+		miCliente1.setNombre("Roberto");
+		miCliente1.setApellido("Cedeño");
+		miCliente1.setCedula("555");
 		miCliente1.setFechaNacimiento(LocalDateTime.of(1990, 10, 6, 0, 0));
 		List<Renta> listaRentasCliente1= new ArrayList<Renta>();
 		miCliente1.setMiListaRentas(listaRentasCliente1);
