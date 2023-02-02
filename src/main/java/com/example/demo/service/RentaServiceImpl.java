@@ -2,8 +2,7 @@ package com.example.demo.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,30 +29,23 @@ public class RentaServiceImpl implements IRentaService {
 	@Override
 	public void ingresarRenta(String placa, String cedula) {
 		
-		VehiculoRent vehi = this.iVehiculoRentRepository.buscarPlacaQuery(placa);
-		ClienteRent client = this.iClienteRentRepository.buscarCedulaQuery(cedula);
+		VehiculoRent vehiculoBuscado = this.iVehiculoRentRepository.buscarPlacaQuery(placa);
+		ClienteRent clienteBuscado = this.iClienteRentRepository.buscarCedulaQuery(cedula);
 		
 		// Imprimo los objetos padre por consola, usando el fetch.Type.EAGER, después del mappedBy. 
-		System.out.println(vehi);
-		System.out.println(client);
+		System.out.println(vehiculoBuscado);
+		System.out.println(clienteBuscado);
 		
-		List<Renta> listaRentaVehi= new ArrayList<Renta>();
-		List<Renta> listaRentaClient= new ArrayList<Renta>();
-		
-		vehi.setMisRentas(listaRentaVehi);
-		client.setMiListaRentas(listaRentaClient);
-		
-			
-		
+		// miRenta puede ser reusado cambiando de valores cada que hago una nueva renta, no necesito crear otra[c]
 		Renta miRenta = new Renta();
 		miRenta.setFecha(LocalDateTime.now());
-		miRenta.setNumeroDias(new BigDecimal(7));
-		miRenta.setValorPago(new BigDecimal(2.5));
-		miRenta.setMiclienteRent(client);
-		miRenta.setMiVehiculoRent(vehi);
+		miRenta.setNumeroDias(new BigDecimal(455));
+		miRenta.setValorPago(new BigDecimal(0.5));
+		miRenta.setMiclienteRent(clienteBuscado);
+		miRenta.setMiVehiculoRent(vehiculoBuscado);
 		
-		listaRentaVehi.add(miRenta);
-		listaRentaClient.add(miRenta);
+		vehiculoBuscado.getMisRentas().add(miRenta);
+		clienteBuscado.getMiListaRentas().add(miRenta);
 		
 		this.iRentaRepository.insertar(miRenta);
 		
