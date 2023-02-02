@@ -32,4 +32,9 @@ public class VehiculoRentServiceImpl implements IVehiculoRentService {
 		this.iVehiculoRentRepository.borrar(id);
 	}
 
+	@Override
+	public VehiculoRent buscarPlaca(String placa) {
+		return this.iVehiculoRentRepository.buscarPlaca(placa);
+	}
+
 }

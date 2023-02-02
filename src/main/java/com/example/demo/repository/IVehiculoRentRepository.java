@@ -8,4 +8,6 @@ public interface IVehiculoRentRepository {
 	public void actualizar(VehiculoRent vehiculoRent);
 	public VehiculoRent buscar(Integer id);
 	public void borrar(Integer id);
+	
+	public VehiculoRent buscarPlaca(String placa);
 }

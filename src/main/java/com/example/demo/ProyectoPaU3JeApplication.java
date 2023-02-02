@@ -1,18 +1,33 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.modelo.ClienteRent;
 import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.VehiculoRent;
+import com.example.demo.repository.IClienteRentRepository;
+import com.example.demo.service.IClienteRentService;
 import com.example.demo.service.IEstudianteService;
+import com.example.demo.service.IRentaService;
+import com.example.demo.service.IVehiculoRentService;
 
 @SpringBootApplication
 public class ProyectoPaU3JeApplication implements CommandLineRunner {
 
 	@Autowired
-	private IEstudianteService iEstudianteService;
+	private IVehiculoRentService iVehiculoRentService;
+	
+	@Autowired
+	private IClienteRentService iClienteRentService;
+	
+	@Autowired
+	private IRentaService iRentaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU3JeApplication.class, args);
@@ -20,26 +35,23 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//Consultas
-		// consultar por nombre:
-		Estudiante e = this.iEstudianteService.buscarPorNombreQuery("Alberto");
-		System.out.println(e);
 		
-		// consultar por apellido:
-		e = this.iEstudianteService.buscarPorApellidoQuery("Estrella");
-		System.out.println(e);		
+		VehiculoRent miVehiculo = new VehiculoRent();
+		miVehiculo.setPlaca("AAA");
+		miVehiculo.setColor("Rojo");
+		miVehiculo.setMarca("Mazda");
+		miVehiculo.setPrecio(new BigDecimal(20255));
+		this.iVehiculoRentService.guardar(miVehiculo);
 		
-		// consultar por genero:
-		e = this.iEstudianteService.buscarPorGeneroQuery("M");
-		System.out.println(e);	
+		ClienteRent miCliente = new ClienteRent();
+		miCliente.setNombre("Manolo");
+		miCliente.setApellido("Manrique");
+		miCliente.setCedula("12345678");
+		miCliente.setFechaNacimiento(LocalDateTime.of(1990, 10, 6, 0, 0));
+		this.iClienteRentService.guardar(miCliente);
 		
-		// consultar por cedula:
-		e = this.iEstudianteService.buscarPorCedulaQuery("1723522403");
-		System.out.println(e);	
+		this.iRentaService.ingresarRenta("AAA", "12345678");
 		
-		// consultar por apellido:
-		e = this.iEstudianteService.buscarPorCiudadQuery("Quito");
-		System.out.println(e);	
 		
 	}
 

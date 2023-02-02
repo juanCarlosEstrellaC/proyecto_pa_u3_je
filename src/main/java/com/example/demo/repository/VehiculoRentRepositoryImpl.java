@@ -6,6 +6,7 @@ import com.example.demo.modelo.VehiculoRent;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -34,6 +35,13 @@ public class VehiculoRentRepositoryImpl implements IVehiculoRentRepository{
 	public void borrar(Integer id) {
 		VehiculoRent v = this.buscar(id);
 		this.entityManager.remove(v);
+	}
+
+	@Override
+	public VehiculoRent buscarPlaca(String placa) {
+		Query jpqlQuery = this.entityManager.createQuery("select v from VehiculoRent v where v.placa = :datoPlaca");
+		jpqlQuery.setParameter("datoPlaca", placa);
+		return (VehiculoRent)jpqlQuery.getSingleResult();
 	}
 
 }
