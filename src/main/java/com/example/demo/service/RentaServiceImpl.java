@@ -42,9 +42,6 @@ public class RentaServiceImpl implements IRentaService {
 		
 		this.iRentaRepository.insertar(miRenta);
 		
-		
-		
-		
 	}
 
 
