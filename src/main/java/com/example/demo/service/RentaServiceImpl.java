@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,18 @@ public class RentaServiceImpl implements IRentaService {
 		
 		VehiculoRent vehi = this.iVehiculoRentRepository.buscarPlacaQuery(placa);
 		ClienteRent client = this.iClienteRentRepository.buscarCedulaQuery(cedula);
-		System.out.println(vehi.getColor());
-		System.out.println(client.getApellido());
+		
+		// Imprimo los objetos padre por consola, usando el fetch.Type.EAGER, después del mappedBy. 
+		System.out.println(vehi);
+		System.out.println(client);
+		
+		List<Renta> listaRentaVehi= new ArrayList<Renta>();
+		List<Renta> listaRentaClient= new ArrayList<Renta>();
+		
+		vehi.setMisRentas(listaRentaVehi);
+		client.setMiListaRentas(listaRentaClient);
+		
+			
 		
 		Renta miRenta = new Renta();
 		miRenta.setFecha(LocalDateTime.now());
@@ -40,8 +52,14 @@ public class RentaServiceImpl implements IRentaService {
 		miRenta.setMiclienteRent(client);
 		miRenta.setMiVehiculoRent(vehi);
 		
+		listaRentaVehi.add(miRenta);
+		listaRentaClient.add(miRenta);
+		
 		this.iRentaRepository.insertar(miRenta);
 		
+		for (Renta renta : listaRentaClient) {
+			System.out.println(renta.getFecha());
+		}
 	}
 
 

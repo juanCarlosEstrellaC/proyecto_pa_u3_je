@@ -3,8 +3,10 @@ package com.example.demo.modelo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +37,7 @@ public class VehiculoRent{
 	private BigDecimal precio;
 	
 	
-	@OneToMany(mappedBy = "miVehiculoRent")
+	@OneToMany(mappedBy = "miVehiculoRent",fetch = FetchType.EAGER)
 	private List<Renta> misRentas;
 	
 	
@@ -43,7 +45,7 @@ public class VehiculoRent{
 	@Override
 	public String toString() {
 		return "VehiculoRent [id=" + id + ", placa=" + placa + ", marca=" + marca + ", color=" + color + ", precio="
-				+ precio + ", misRentas=" + misRentas + "]";
+				+ precio + "]";
 	}
 
 	//Get y Set

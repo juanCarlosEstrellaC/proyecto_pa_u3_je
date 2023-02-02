@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,8 +35,16 @@ public class ClienteRent {
 	@Column(name = "clie_fechaNacimiento")
 	private LocalDateTime fechaNacimiento;
 	
-	@OneToMany(mappedBy = "miclienteRent")
+	@OneToMany(mappedBy = "miclienteRent", fetch = FetchType.EAGER)
 	private List<Renta> miListaRentas;
+
+
+	
+	@Override
+	public String toString() {
+		return "ClienteRent [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", fechaNacimiento=" + fechaNacimiento+"]";
+	}
 
 	//Get y Set
 	public Integer getId() {
