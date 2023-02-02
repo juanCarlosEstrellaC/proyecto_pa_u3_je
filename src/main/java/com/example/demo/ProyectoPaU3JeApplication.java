@@ -38,7 +38,7 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		//SI ESTÁ VALIENDO TAL CUAL, PERO ME GUSTARÍA TRAER LAS LISTAS ACÁ 
-		
+		// xd
 		VehiculoRent miVehiculo = new VehiculoRent();
 		miVehiculo.setPlaca("AAA");
 		miVehiculo.setColor("Rojo");
