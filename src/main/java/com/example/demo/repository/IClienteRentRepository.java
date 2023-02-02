@@ -8,4 +8,7 @@ public interface IClienteRentRepository {
 	public void actualizar(ClienteRent clienteRent);
 	public ClienteRent buscar(Integer id);
 	public void borrar(Integer id);
+	
+	public ClienteRent buscarCedulaQuery(String cedula);
+
 }

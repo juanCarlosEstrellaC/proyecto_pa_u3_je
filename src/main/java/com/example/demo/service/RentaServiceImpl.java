@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.modelo.ClienteRent;
 import com.example.demo.modelo.Renta;
 import com.example.demo.modelo.VehiculoRent;
 import com.example.demo.repository.IClienteRentRepository;
@@ -24,8 +28,19 @@ public class RentaServiceImpl implements IRentaService {
 	@Override
 	public void ingresarRenta(String placa, String cedula) {
 		
-		VehiculoRent vehi = this.iVehiculoRentRepository.buscarPlaca(placa);
-		System.out.println(vehi);
+		VehiculoRent vehi = this.iVehiculoRentRepository.buscarPlacaQuery(placa);
+		ClienteRent client = this.iClienteRentRepository.buscarCedulaQuery(cedula);
+		System.out.println(vehi.getColor());
+		System.out.println(client.getApellido());
+		
+		Renta miRenta = new Renta();
+		miRenta.setFecha(LocalDateTime.now());
+		miRenta.setNumeroDias(new BigDecimal(7));
+		miRenta.setValorPago(new BigDecimal(2.5));
+		miRenta.setMiclienteRent(client);
+		miRenta.setMiVehiculoRent(vehi);
+		
+		this.iRentaRepository.insertar(miRenta);
 		
 		
 		

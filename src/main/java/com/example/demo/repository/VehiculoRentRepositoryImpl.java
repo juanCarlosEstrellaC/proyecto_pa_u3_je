@@ -38,7 +38,7 @@ public class VehiculoRentRepositoryImpl implements IVehiculoRentRepository{
 	}
 
 	@Override
-	public VehiculoRent buscarPlaca(String placa) {
+	public VehiculoRent buscarPlacaQuery(String placa) {
 		Query jpqlQuery = this.entityManager.createQuery("select v from VehiculoRent v where v.placa = :datoPlaca");
 		jpqlQuery.setParameter("datoPlaca", placa);
 		return (VehiculoRent)jpqlQuery.getSingleResult();

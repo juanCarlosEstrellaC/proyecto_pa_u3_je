@@ -41,14 +41,14 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 		miVehiculo.setColor("Rojo");
 		miVehiculo.setMarca("Mazda");
 		miVehiculo.setPrecio(new BigDecimal(20255));
-		this.iVehiculoRentService.guardar(miVehiculo);
+		//this.iVehiculoRentService.guardar(miVehiculo);
 		
 		ClienteRent miCliente = new ClienteRent();
 		miCliente.setNombre("Manolo");
 		miCliente.setApellido("Manrique");
 		miCliente.setCedula("12345678");
 		miCliente.setFechaNacimiento(LocalDateTime.of(1990, 10, 6, 0, 0));
-		this.iClienteRentService.guardar(miCliente);
+		//this.iClienteRentService.guardar(miCliente);
 		
 		this.iRentaService.ingresarRenta("AAA", "12345678");
 		

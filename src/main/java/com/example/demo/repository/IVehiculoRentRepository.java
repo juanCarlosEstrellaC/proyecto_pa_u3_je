@@ -9,5 +9,5 @@ public interface IVehiculoRentRepository {
 	public VehiculoRent buscar(Integer id);
 	public void borrar(Integer id);
 	
-	public VehiculoRent buscarPlaca(String placa);
+	public VehiculoRent buscarPlacaQuery(String placa);
 }

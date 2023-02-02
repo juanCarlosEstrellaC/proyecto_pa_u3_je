@@ -34,7 +34,7 @@ public class VehiculoRentServiceImpl implements IVehiculoRentService {
 
 	@Override
 	public VehiculoRent buscarPlaca(String placa) {
-		return this.iVehiculoRentRepository.buscarPlaca(placa);
+		return this.iVehiculoRentRepository.buscarPlacaQuery(placa);
 	}
 
 }
