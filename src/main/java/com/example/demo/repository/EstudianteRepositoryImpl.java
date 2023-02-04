@@ -7,6 +7,7 @@ import com.example.demo.modelo.Estudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -53,6 +54,43 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		Query jpqlQuery = this.entityManager.createQuery("select e from Estudiante e where e.ciudad = :datoCiudad");
 		jpqlQuery.setParameter("datoCiudad", ciudad);
 		return (Estudiante) jpqlQuery.getSingleResult();
+	}
+	
+	// Typed
+	@Override
+	public Estudiante buscarPorNombreQueryTyped(String nombre) {
+		TypedQuery<Estudiante> myTypedQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre", Estudiante.class);
+		myTypedQuery.setParameter("datoNombre", nombre);
+		return myTypedQuery.getSingleResult();
+	}
+
+	// Named
+	@Override
+	public Estudiante buscarPorNombreQueryNamed(String nombre) {
+		Query miQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombre");
+		miQuery.setParameter("datoNombre", nombre);
+		return (Estudiante)miQuery.getSingleResult();
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNamedQueryTyped(String nombre) {
+		TypedQuery<Estudiante> myQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombre", Estudiante.class);
+		myQuery.setParameter("datoNombre", nombre);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNativeQuery(String nombre) {
+		Query miQuery = this.entityManager.createNativeQuery("select * from estudiante where estu_nombre = :datoNombre", Estudiante.class);
+		miQuery.setParameter("datoNombre", nombre); 
+		return (Estudiante) miQuery.getSingleResult();
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
+		TypedQuery<Estudiante> myQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombreNative", Estudiante.class);
+		myQuery.setParameter("datoNombre", nombre);
+		return (Estudiante) myQuery.getSingleResult();
 	}
 
 

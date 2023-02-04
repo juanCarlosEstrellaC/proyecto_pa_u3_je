@@ -37,4 +37,31 @@ public class EstudianteServiceImpl implements IEstudianteService{
 		return this.iEstudianteRepository.buscarPorCiudadQuery(ciudad);
 	}
 
+	//TYPED:
+	@Override
+	public Estudiante buscarPorNombreQueryTyped(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreQueryTyped(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorNombreQueryNamed(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreQueryNamed(nombre);
+	}
+
+	//NAMED Y TYPED
+	@Override
+	public Estudiante buscarPorNombreNamedQueryTyped(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreNamedQueryTyped(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNativeQuery(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreNativeQuery(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreNativeQueryTypedNamed(nombre);
+	}
+
 }
