@@ -39,13 +39,13 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 	//TYPED:
 	@Override
-	public Estudiante buscarPorNombreQueryTyped(String nombre) {
-		return this.iEstudianteRepository.buscarPorNombreQueryTyped(nombre);
+	public Estudiante buscarPorNombreTypedQuery(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreTypedQuery(nombre);
 	}
 
 	@Override
-	public Estudiante buscarPorNombreQueryNamed(String nombre) {
-		return this.iEstudianteRepository.buscarPorNombreQueryNamed(nombre);
+	public Estudiante buscarPorNombreNamedQuery(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreNamedQuery(nombre);
 	}
 
 	//NAMED Y TYPED
@@ -60,8 +60,8 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	}
 
 	@Override
-	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
-		return this.iEstudianteRepository.buscarPorNombreNativeQueryTypedNamed(nombre);
+	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreNamedNativeQueryTyped(nombre);
 	}
 
 }

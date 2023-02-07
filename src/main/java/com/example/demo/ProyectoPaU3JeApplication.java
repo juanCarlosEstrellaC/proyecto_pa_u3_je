@@ -23,17 +23,21 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Estudiante estudianteBuscado4 = this.iEstudianteService.buscarPorNombreQueryTyped("Alberto");
-		System.out.println(estudianteBuscado4);
+		Estudiante estudianteBuscadoTQ = this.iEstudianteService.buscarPorNombreTypedQuery("Alberto");
+		System.out.println(estudianteBuscadoTQ);
 		
-		Estudiante estudianteBuscado = this.iEstudianteService.buscarPorNombreQueryNamed("Alberto");
-		System.out.println(estudianteBuscado);
+		Estudiante estudianteBuscadoNQ = this.iEstudianteService.buscarPorNombreNamedQuery("Alberto");
+		System.out.println(estudianteBuscadoNQ);
 		
-		Estudiante estudianteBuscado2 = this.iEstudianteService.buscarPorNombreNamedQueryTyped("Alberto");
-		System.out.println(estudianteBuscado2);
+		Estudiante estudianteBuscadoNAQ = this.iEstudianteService.buscarPorNombreNativeQuery("Alberto");
+		System.out.println(estudianteBuscadoNAQ);
 		
-		Estudiante estudianteBuscado3 = this.iEstudianteService.buscarPorNombreNativeQuery("Alberto");
-		System.out.println(estudianteBuscado3);
+		Estudiante estudianteBuscadoNQT = this.iEstudianteService.buscarPorNombreNamedQueryTyped("Alberto");
+		System.out.println(estudianteBuscadoNQT);
+		
+		Estudiante estudiateBuscadoNaQT = this.iEstudianteService.buscarPorNombreNamedNativeQueryTyped("Alberto");
+		System.out.println(estudiateBuscadoNaQT);
+	
 		
 	
 	}

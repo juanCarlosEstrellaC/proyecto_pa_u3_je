@@ -17,6 +17,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	//QUERY
 	@Override
 	public Estudiante buscarPorNombreQuery(String nombre) {
 		// select * from estudiante where estu_nombre = 'Juan'
@@ -26,7 +27,6 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		jpqlQuery.setParameter("datoNombre", nombre);
 		return (Estudiante)jpqlQuery.getSingleResult();  // jpqlQuery.getSingleResult(); devuelve objetos genéricos, por eso uso el cast.
 	}													 // además devuelve solo un resultado.
-
 	@Override
 	public Estudiante buscarPorApellidoQuery(String apellido) {
 		Query jpqlQuery = this.entityManager.createQuery("select e from Estudiante e where e.apellido = :datoApellido");
@@ -34,44 +34,51 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		
 		return (Estudiante)jpqlQuery.getSingleResult();
 	}
-
 	@Override
 	public Estudiante buscarPorGeneroQuery(String genero) {
 		Query jpqlQuery = this.entityManager.createQuery("select e from Estudiante e where e.genero = :datoGenero");
 		jpqlQuery.setParameter("datoGenero", genero);
 		return (Estudiante) jpqlQuery.getSingleResult();
 	}
-
 	@Override
 	public Estudiante buscarPorCedulaQuery(String cedula) {
 		Query jpqlQuery = this.entityManager.createQuery("select e from Estudiante e where e.cedula = :datoCedula");
 		jpqlQuery.setParameter("datoCedula", cedula);
 		return (Estudiante) jpqlQuery.getSingleResult();
 	}
-
 	@Override
 	public Estudiante buscarPorCiudadQuery(String ciudad) {
 		Query jpqlQuery = this.entityManager.createQuery("select e from Estudiante e where e.ciudad = :datoCiudad");
 		jpqlQuery.setParameter("datoCiudad", ciudad);
 		return (Estudiante) jpqlQuery.getSingleResult();
 	}
-	
-	// Typed
+		
+	// TYPED: Es un Query, pero usando la interface TypedQuery<nombre del tipo de clase específico>. Como devuelve un tipo de dato específico, al final no hace falta el cast.
 	@Override
-	public Estudiante buscarPorNombreQueryTyped(String nombre) {
+	public Estudiante buscarPorNombreTypedQuery(String nombre) {
 		TypedQuery<Estudiante> myTypedQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre", Estudiante.class);
 		myTypedQuery.setParameter("datoNombre", nombre);
 		return myTypedQuery.getSingleResult();
 	}
 
-	// Named
+	// NAMED: le doy un alias al query e implemento la anotación @NamedQuery(name = "alias", query = "select...") en la clase de la que se hace la consulta.
 	@Override
-	public Estudiante buscarPorNombreQueryNamed(String nombre) {
+	public Estudiante buscarPorNombreNamedQuery(String nombre) {
 		Query miQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombre");
 		miQuery.setParameter("datoNombre", nombre);
 		return (Estudiante)miQuery.getSingleResult();
 	}
 
+	// NATIVE: Consulta que usa SQL y no JPQL.
+	@Override
+	public Estudiante buscarPorNombreNativeQuery(String nombre) {
+		Query miQuery = this.entityManager.createNativeQuery("select * from estudiante where estu_nombre = :datoNombre", Estudiante.class);
+		miQuery.setParameter("datoNombre", nombre); 
+		return (Estudiante) miQuery.getSingleResult();
+	}
+	
+	// MIXES:
+	// Consulta con alias (named), que devuelve un tipo de dato específico (typed).
 	@Override
 	public Estudiante buscarPorNombreNamedQueryTyped(String nombre) {
 		TypedQuery<Estudiante> myQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombre", Estudiante.class);
@@ -79,15 +86,9 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return myQuery.getSingleResult();
 	}
 
+	// Consulta que usa un alias (named), devuelve un tipo específico de dato (typed), y usa SQL en vez de JPQL (native).
 	@Override
-	public Estudiante buscarPorNombreNativeQuery(String nombre) {
-		Query miQuery = this.entityManager.createNativeQuery("select * from estudiante where estu_nombre = :datoNombre", Estudiante.class);
-		miQuery.setParameter("datoNombre", nombre); 
-		return (Estudiante) miQuery.getSingleResult();
-	}
-
-	@Override
-	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
+	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre) {
 		TypedQuery<Estudiante> myQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorNombreNative", Estudiante.class);
 		myQuery.setParameter("datoNombre", nombre);
 		return (Estudiante) myQuery.getSingleResult();
@@ -95,3 +96,4 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 
 
 }
+	

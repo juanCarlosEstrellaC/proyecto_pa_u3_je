@@ -15,7 +15,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "estudiante")
+
+// Named = le doy un alias al query:
+// NamedQuery = named = query con alias + query(consulta con JPQL). 
 @NamedQuery(name = "Estudiante.buscarPorNombre", query = "select e  from Estudiante e where e.nombre = :datoNombre")
+
+// NamedNativeQuery = named = query con alias + Native query(consulta con SQL). 
 @NamedNativeQuery(name = "Estudiante.buscarPorNombreNative", query = "select * from estudiante where estu_nombre = :datoNombre")
 public class Estudiante {
 	
