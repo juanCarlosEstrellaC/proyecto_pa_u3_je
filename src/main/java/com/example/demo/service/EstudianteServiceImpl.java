@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,13 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 	@Autowired
 	private IEstudianteRepository iEstudianteRepository;
+	
+	@Override
+	public void ingresar(Estudiante estudiante) {
+		this.iEstudianteRepository.ingresar(estudiante);
+	}
+
+
 	
 	@Override
 	public Estudiante buscarPorNombreQuery(String nombre) {
@@ -63,5 +72,22 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre) {
 		return this.iEstudianteRepository.buscarPorNombreNamedNativeQueryTyped(nombre);
 	}
+
+	@Override
+	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreQueryList(nombre);
+	}
+
+
+
+	@Override
+	public Estudiante buscarPorNombreQueryListFirst(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreQueryListFirst(nombre);
+	}
+
+	
+
+	
+	
 
 }

@@ -1,8 +1,11 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.dto.EstudianteDTO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -93,7 +96,44 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		myQuery.setParameter("datoNombre", nombre);
 		return (Estudiante) myQuery.getSingleResult();
 	}
+	
+	@Override
+	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
+		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");
+		jpqlQuery.setParameter("datoNombre", nombre);
+		return jpqlQuery.getResultList();
+	}
+	@Override
+	public List<Estudiante> buscarPorNombreNamedQueryList(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Estudiante> buscarPorNombreNamedNativeQueryTypedList(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void ingresar(Estudiante estudiante) {
+		this.entityManager.persist(estudiante);
+	}
+	
+	@Override
+	public Estudiante buscarPorNombreQueryListFirst(String nombre) {
+		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");
+		jpqlQuery.setParameter("datoNombre", nombre);
+		return (Estudiante) jpqlQuery.getResultList().get(0);
+	}
+	@Override
+	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre) {
+		TypedQuery<EstudianteDTO> myTypedQuery = this.entityManager.createQuery("select NEW EstudianteDTO(e.nombre, e.apellido, e.cedula)  from Estudiante e where e.nombre = :datoNombre", EstudianteDTO.class);
+		myTypedQuery.setParameter("datoNombre", nombre);
+		return myTypedQuery.getSingleResult();
+	}
 
+	
+	
 
 }
 	

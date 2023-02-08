@@ -1,8 +1,13 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import com.example.demo.modelo.Estudiante;
 
 public interface IEstudianteService {
+	
+	public void ingresar(Estudiante estudiante);
+
 
 	public Estudiante buscarPorNombreQuery(String nombre);
 	public Estudiante buscarPorApellidoQuery(String apellido);
@@ -15,6 +20,11 @@ public interface IEstudianteService {
 	public Estudiante buscarPorNombreNativeQuery(String nombre);
 	public Estudiante buscarPorNombreNamedQueryTyped(String nombre);
 	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre);
+	
+	public List<Estudiante> buscarPorNombreQueryList(String nombre);
+	public Estudiante buscarPorNombreQueryListFirst(String nombre);
+
+
 
 
 }

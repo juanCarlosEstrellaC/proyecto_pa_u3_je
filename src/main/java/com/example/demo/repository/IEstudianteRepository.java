@@ -1,8 +1,13 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.dto.EstudianteDTO;
 
 public interface IEstudianteRepository {
+	
+	public void ingresar(Estudiante estudiante);
 	
 	//Query:
 	public Estudiante buscarPorNombreQuery(String nombre);
@@ -23,5 +28,15 @@ public interface IEstudianteRepository {
 	// Mix:
 	public Estudiante buscarPorNombreNamedQueryTyped(String nombre);
 	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre);
+	
+	// 
+	public List<Estudiante> buscarPorNombreQueryList(String nombre);
+	public Estudiante buscarPorNombreQueryListFirst(String nombre);
+
+	public List<Estudiante> buscarPorNombreNamedQueryList(String nombre);
+	public List<Estudiante> buscarPorNombreNamedNativeQueryTypedList(String nombre);
+
+	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre);
+
 
 }
