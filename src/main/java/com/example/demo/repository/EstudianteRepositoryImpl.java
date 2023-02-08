@@ -104,6 +104,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	
 	
 	//----------------------------------------------------------------------------------------------------
+	// Obtener todos los estudiantes con el mismo nombre.
 	@Override
 	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
 		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");

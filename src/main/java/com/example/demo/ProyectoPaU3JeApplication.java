@@ -27,42 +27,42 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 //		Estudiante miEstudiante = new Estudiante();
-//		miEstudiante.setNombre("Juan");
+//		miEstudiante.setNombre("Roberta");
 //		miEstudiante.setApellido("Matarero");
 //		miEstudiante.setCedula("12345678");
-//		miEstudiante.setGenero("M");
+//		miEstudiante.setGenero("F");
 //		miEstudiante.setPais("Ecuador");
 //		miEstudiante.setFechaNacimiento(LocalDateTime.of(1996, 01, 29, 0, 0));
 //		
-//	
+//		// Ingreso el estudiante:
 //		this.iEstudianteService.ingresar(miEstudiante);
 		
-		
-//		Estudiante estudianteBuscadoTQ = this.iEstudianteService.buscarPorNombreTypedQuery("Alberto");
-//		System.out.println(estudianteBuscadoTQ);
-//		
-//		Estudiante estudianteBuscadoNQ = this.iEstudianteService.buscarPorNombreNamedQuery("Alberto");
-//		System.out.println(estudianteBuscadoNQ);
-//		
-//		Estudiante estudianteBuscadoNAQ = this.iEstudianteService.buscarPorNombreNativeQuery("Alberto");
-//		System.out.println(estudianteBuscadoNAQ);
-//		
-//		Estudiante estudianteBuscadoNQT = this.iEstudianteService.buscarPorNombreNamedQueryTyped("Alberto");
-//		System.out.println(estudianteBuscadoNQT);
-//		
-//		Estudiante estudiateBuscadoNaQT = this.iEstudianteService.buscarPorNombreNamedNativeQueryTyped("Alberto");
-//		System.out.println(estudiateBuscadoNaQT);
-	
-		
-		
-		List<Estudiante> listaEstu = this.iEstudianteService.buscarPorNombreQueryList("Juani");
-		for (Estudiante estudiante : listaEstu) {
+		// Obtener todos los estudiantes con nombre "Juan".
+		List<Estudiante> listaEstudiantesNombreJuan = this.iEstudianteService.buscarPorNombreQueryList("Juan");
+		for (Estudiante estudiante : listaEstudiantesNombreJuan) {
 			System.out.println(estudiante);
 		}
 		
-//		Estudiante busquedaPrimerRegistroEstudiate = this.iEstudianteService.buscarPorNombreQueryListFirst("Juan");
-//		System.out.println(busquedaPrimerRegistroEstudiate);
+		// Obtener el primer registro de estudiante con nombre "Juan"
+		Estudiante busquedaPrimerRegistroEstudiate = this.iEstudianteService.buscarPorNombreQueryListFirst("Juan");
+		System.out.println(busquedaPrimerRegistroEstudiate);
 
 	}
 
 }
+
+
+//Estudiante estudianteBuscadoTQ = this.iEstudianteService.buscarPorNombreTypedQuery("Alberto");
+//System.out.println(estudianteBuscadoTQ);
+//
+//Estudiante estudianteBuscadoNQ = this.iEstudianteService.buscarPorNombreNamedQuery("Alberto");
+//System.out.println(estudianteBuscadoNQ);
+//
+//Estudiante estudianteBuscadoNAQ = this.iEstudianteService.buscarPorNombreNativeQuery("Alberto");
+//System.out.println(estudianteBuscadoNAQ);
+//
+//Estudiante estudianteBuscadoNQT = this.iEstudianteService.buscarPorNombreNamedQueryTyped("Alberto");
+//System.out.println(estudianteBuscadoNQT);
+//
+//Estudiante estudiateBuscadoNaQT = this.iEstudianteService.buscarPorNombreNamedNativeQueryTyped("Alberto");
+//System.out.println(estudiateBuscadoNaQT);
