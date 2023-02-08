@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,18 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+//		Estudiante miEstudiante = new Estudiante();
+//		miEstudiante.setNombre("Juan");
+//		miEstudiante.setApellido("Matarero");
+//		miEstudiante.setCedula("12345678");
+//		miEstudiante.setGenero("M");
+//		miEstudiante.setPais("Ecuador");
+//		miEstudiante.setFechaNacimiento(LocalDateTime.of(1996, 01, 29, 0, 0));
+//		
+//	
+//		this.iEstudianteService.ingresar(miEstudiante);
+		
+		
 //		Estudiante estudianteBuscadoTQ = this.iEstudianteService.buscarPorNombreTypedQuery("Alberto");
 //		System.out.println(estudianteBuscadoTQ);
 //		
@@ -36,23 +49,19 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 //		
 //		Estudiante estudianteBuscadoNQT = this.iEstudianteService.buscarPorNombreNamedQueryTyped("Alberto");
 //		System.out.println(estudianteBuscadoNQT);
-		
-		Estudiante estudiateBuscadoNaQT = this.iEstudianteService.buscarPorNombreNamedNativeQueryTyped("Alberto");
+//		
+//		Estudiante estudiateBuscadoNaQT = this.iEstudianteService.buscarPorNombreNamedNativeQueryTyped("Alberto");
 //		System.out.println(estudiateBuscadoNaQT);
 	
 		
-		Estudiante e1 = new Estudiante();
-		e1.setNombre("Juani");
 		
-		//this.iEstudianteService.ingresar(e1);
+		List<Estudiante> listaEstu = this.iEstudianteService.buscarPorNombreQueryList("Juani");
+		for (Estudiante estudiante : listaEstu) {
+			System.out.println(estudiante);
+		}
 		
-//		List<Estudiante> listaEstu = this.iEstudianteService.buscarPorNombreQueryList("Juani");
-//		for (Estudiante estudiante : listaEstu) {
-//			System.out.println(estudiante);
-//		}
-		
-		Estudiante Estu2 = this.iEstudianteService.buscarPorNombreQueryListFirst("Juani");
-		System.out.println(Estu2);
+//		Estudiante busquedaPrimerRegistroEstudiate = this.iEstudianteService.buscarPorNombreQueryListFirst("Juan");
+//		System.out.println(busquedaPrimerRegistroEstudiate);
 
 	}
 

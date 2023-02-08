@@ -36,7 +36,6 @@ import jakarta.persistence.Table;
 		@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative", query = "select * from estudiante where estu_nombre = :datoNombre", resultClass = Estudiante.class),
 		@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative2", query = "select * from estudiante where estu_nombre = :datoNombre", resultClass = Estudiante.class),
 		@NamedNativeQuery(name = "Estudiante.buscarPorNombreNative3", query = "select * from estudiante where estu_nombre = :datoNombre", resultClass = Estudiante.class) })
-
 public class Estudiante {
 
 	// Mapeo columnas como atributos

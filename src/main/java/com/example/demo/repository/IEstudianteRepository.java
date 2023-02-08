@@ -29,13 +29,14 @@ public interface IEstudianteRepository {
 	public Estudiante buscarPorNombreNamedQueryTyped(String nombre);
 	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre);
 	
-	// 
+	//------------------------------------------------------------------------------------------
+	// Para obtener más de un resultado, por ejemplo, todos los estudiantes que se llamen "Juan"
 	public List<Estudiante> buscarPorNombreQueryList(String nombre);
+	
+	// Obtener de todos los estudiantes con un mismo nombre, el primer registro
 	public Estudiante buscarPorNombreQueryListFirst(String nombre);
 
-	public List<Estudiante> buscarPorNombreNamedQueryList(String nombre);
-	public List<Estudiante> buscarPorNombreNamedNativeQueryTypedList(String nombre);
-
+	// DTO:
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre);
 
 

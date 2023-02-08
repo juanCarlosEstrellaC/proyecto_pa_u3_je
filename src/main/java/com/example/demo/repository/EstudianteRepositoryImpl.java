@@ -20,6 +20,11 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	@Override
+	public void ingresar(Estudiante estudiante) {
+		this.entityManager.persist(estudiante);
+	}
+	
 	//QUERY
 	@Override
 	public Estudiante buscarPorNombreQuery(String nombre) {
@@ -97,34 +102,26 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return (Estudiante) myQuery.getSingleResult();
 	}
 	
+	
+	//----------------------------------------------------------------------------------------------------
 	@Override
 	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
 		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");
 		jpqlQuery.setParameter("datoNombre", nombre);
 		return jpqlQuery.getResultList();
 	}
-	@Override
-	public List<Estudiante> buscarPorNombreNamedQueryList(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Estudiante> buscarPorNombreNamedNativeQueryTypedList(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	@Override
-	public void ingresar(Estudiante estudiante) {
-		this.entityManager.persist(estudiante);
-	}
-	
+	// Obtener de todos los estudiantes con un mismo nombre, el primer registro.
+	// A diferencia del método "buscarPorNombreQuery", que devolvía un único elemento (usaba .getSingleResult()), este ejemplo utiliza el .getResultList() para obtener más de un solo elemento.
+	// En este caso devolverá una Lista de elementos, pero yo solo obtendré el primero de dicha lista para tener el primer registro.
 	@Override
 	public Estudiante buscarPorNombreQueryListFirst(String nombre) {
 		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");
 		jpqlQuery.setParameter("datoNombre", nombre);
-		return (Estudiante) jpqlQuery.getResultList().get(0);
-	}
+		return (Estudiante) jpqlQuery.getResultList().get(0);  // getResultList() devuelve una lista de Estudiantes, con .get(0) obtengo el primer elemento de la lista, y eso devuelvo.
+	}														   // Casteo porque sigo usando un Query que es genérico, y necesito especificarlo ahora.
+	
+	// DTO:
 	@Override
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre) {
 		TypedQuery<EstudianteDTO> myTypedQuery = this.entityManager.createQuery("select NEW EstudianteDTO(e.nombre, e.apellido, e.cedula)  from Estudiante e where e.nombre = :datoNombre", EstudianteDTO.class);

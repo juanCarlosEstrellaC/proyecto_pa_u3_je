@@ -20,7 +20,7 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	}
 
 
-	
+	//QUERY:
 	@Override
 	public Estudiante buscarPorNombreQuery(String nombre) {
 		return this.iEstudianteRepository.buscarPorNombreQuery(nombre);
