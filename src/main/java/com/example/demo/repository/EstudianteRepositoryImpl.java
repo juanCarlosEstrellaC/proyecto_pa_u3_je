@@ -105,6 +105,8 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	
 	//----------------------------------------------------------------------------------------------------
 	// Obtener todos los estudiantes con el mismo nombre.
+	// A diferencia del método "buscarPorNombreQuery", que devolvía un único elemento (usaba .getSingleResult()), este ejemplo utiliza el .getResultList() para obtener más de un solo elemento.
+	// En este caso devolverá una Lista de elementos.
 	@Override
 	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
 		Query jpqlQuery = this.entityManager.createQuery("select e  from Estudiante e where e.nombre = :datoNombre");
@@ -112,7 +114,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return jpqlQuery.getResultList();
 	}
 	
-	// Obtener de todos los estudiantes con un mismo nombre, el primer registro.
+	// Obtener el primer registro de todos los estudiantes con un mismo nombre.
 	// A diferencia del método "buscarPorNombreQuery", que devolvía un único elemento (usaba .getSingleResult()), este ejemplo utiliza el .getResultList() para obtener más de un solo elemento.
 	// En este caso devolverá una Lista de elementos, pero yo solo obtendré el primero de dicha lista para tener el primer registro.
 	@Override
