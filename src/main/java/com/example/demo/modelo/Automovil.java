@@ -8,11 +8,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedNativeQueries;
+import jakarta.persistence.NamedNativeQuery;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "automovil")
+@NamedQuery(name = "Automovil.buscarPorPlacaNamed", query = "select a from Automovil a where a.placa = :datoPlaca")
+@NamedQuery(name = "Automovil.buscarPorColorNamed", query = "select a from Automovil a where a.color = :datoColor")
+@NamedQuery(name = "Automovil.buscarPorMarcaNamed", query = "select a from Automovil a where a.marca = :datoMarca")
+
+@NamedNativeQuery(name = "Automovil.buscarPorPlacaNamedNative", query = "select * from automovil where auto_placa = :datoPlaca", resultClass = Automovil.class)
+@NamedNativeQuery(name = "Automovil.buscarPorColorNamedNative", query = "select * from automovil where auto_color = :datoColor", resultClass = Automovil.class)
+@NamedNativeQuery(name = "Automovil.buscarPorPrecioNamedNative", query = "select * from automovil where auto_precio = :datoPrecio", resultClass = Automovil.class)
+
+
 public class Automovil{
 	
 	@Id
