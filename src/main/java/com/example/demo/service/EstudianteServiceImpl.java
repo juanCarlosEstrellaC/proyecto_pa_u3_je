@@ -89,7 +89,21 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre) {
 		return this.iEstudianteRepository.buscarPorNombreTypedQueryDTO(nombre);
 	}
+
+
 	
+	
+	//------------------------------------------------------------------------------------------
+	// CRITERIA:
+	@Override
+	public Estudiante buscarPorNombreCriteria(String nombre) {
+		return this.iEstudianteRepository.buscarPorNombreCriteria(nombre);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorNombreCriteriaAndOr(String nombre, String apellido, String genero) {
+		return this.iEstudianteRepository.buscarPorNombreCriteriaAndOr(nombre, apellido, genero);
+	}
 
 
 }

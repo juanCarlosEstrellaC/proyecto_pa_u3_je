@@ -39,5 +39,9 @@ public interface IEstudianteService {
 	// DTO:
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre);
 
+	//------------------------------------------------------------------------------------------
+	// CRITERIA:
+	public Estudiante buscarPorNombreCriteria(String nombre);
+	public List<Estudiante> buscarPorNombreCriteriaAndOr(String nombre, String apellido, String genero);
 
 }

@@ -17,7 +17,12 @@ public class EstudianteDTO {
 		this.cedula = cedula;
 	}
 	
-	
+	//toString
+	@Override
+	public String toString() {
+		return "EstudianteDTO [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + "]";
+	}
+
 	//GET Y SET
 	public String getNombre() {
 		return nombre;
