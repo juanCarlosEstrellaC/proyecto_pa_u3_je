@@ -72,6 +72,7 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	}
 
 	//------------------------------------------------------------------------------------------
+	// Retornos con más de un elemento:
 	// Para obtener más de un resultado, por ejemplo, todos los estudiantes que se llamen "Juan"
 	@Override
 	public List<Estudiante> buscarPorNombreQueryList(String nombre) {
@@ -84,26 +85,37 @@ public class EstudianteServiceImpl implements IEstudianteService{
 		return this.iEstudianteRepository.buscarPorNombreQueryListFirst(nombre);
 	}
 
+	//------------------------------------------------------------------------------------------
 	// DTO:
 	@Override
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre) {
 		return this.iEstudianteRepository.buscarPorNombreTypedQueryDTO(nombre);
 	}
 
-
-	
-	
 	//------------------------------------------------------------------------------------------
 	// CRITERIA:
 	@Override
 	public Estudiante buscarPorNombreCriteria(String nombre) {
 		return this.iEstudianteRepository.buscarPorNombreCriteria(nombre);
 	}
-
 	@Override
 	public List<Estudiante> buscarPorNombreCriteriaAndOr(String nombre, String apellido, String genero) {
 		return this.iEstudianteRepository.buscarPorNombreCriteriaAndOr(nombre, apellido, genero);
 	}
 
+	
+	//------------------------------------------------------------------------------------------
+	// QUERYS de ELIMINAR Y ACTUALIZAR 
+	@Override
+	public int eliminarPorApellido(String apellido) {
+		return this.iEstudianteRepository.eliminarPorApellido(apellido);
+	}
+
+	@Override
+	public int actualizarPorApellido(String apellido, String nombre) {
+		return this.iEstudianteRepository.actualizarPorApellido(apellido, nombre);
+	}
+
+	
 
 }

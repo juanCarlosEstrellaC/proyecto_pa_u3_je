@@ -108,6 +108,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	
 	
 	//----------------------------------------------------------------------------------------------------
+	// Retornos con más de un elemento:
 	// Obtener todos los estudiantes con el mismo nombre.
 	// A diferencia del método "buscarPorNombreQuery", que devolvía un único elemento (usaba .getSingleResult()), este ejemplo utiliza el .getResultList() para obtener más de un solo elemento.
 	// En este caso devolverá una Lista de elementos.
@@ -128,6 +129,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return (Estudiante) jpqlQuery.getResultList().get(0);  // getResultList() devuelve una lista de Estudiantes, con .get(0) obtengo el primer elemento de la lista, y eso devuelvo.
 	}														   // Casteo porque sigo usando un Query que es genérico, y necesito especificarlo ahora.
 	
+	//----------------------------------------------------------------------------------------------------
 	// DTO:
 	@Override
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre) {
@@ -136,6 +138,7 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return myTypedQuery.getSingleResult();
 	}
 	
+	//----------------------------------------------------------------------------------------------------
 	// CRITERIA:
 	@Override
 	public Estudiante buscarPorNombreCriteria(String nombre) {
@@ -203,6 +206,27 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return mySQL.getResultList();
 	}
 
+	//------------------------------------------------------------------------------------------
+	// QUERYS de ELIMINAR Y ACTUALIZAR 
+	// El entero que retorna es el número de elementos que se elimina o se actualiza.
+	@Override
+	public int eliminarPorApellido(String apellido) {
+		//DELETE FROM estudiante WHERE estu_apellido = 'Teran'
+		Query query = this.entityManager.createQuery("DELETE FROM Estudiante e WHERE e.apellido = :datoEntrada"); //Elimina a todos los estudiantes con apellido X
+		query.setParameter("datoEntrada", apellido);
+		return query.executeUpdate(); //es executeUpdate() así sea eliminar. Y me retorna un entero.
+	}
+
+	@Override
+	public int actualizarPorApellido(String apellido, String nombre) {
+		// UPDATE estudiante set estu_nombre = "Edison" WHERE estu_apellido = "Cayambe"
+		Query query = this.entityManager.createQuery("UPDATE Estudiante e SET e.nombre =:datoNombre WHERE e.apellido = :datoApellido");
+		query.setParameter("datoNombre", nombre);
+		query.setParameter("datoApellido", apellido);
+		return query.executeUpdate(); 
+	}
+
+	
 	
 	
 

@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.Automovil;
 import com.example.demo.modelo.Estudiante;
-import com.example.demo.modelo.dto.EstudianteDTO;
-import com.example.demo.service.IAutomovilService;
 import com.example.demo.service.IEstudianteService;
 
 @SpringBootApplication
@@ -34,9 +29,14 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 //		 Estudiante estudianteBuscadoCriteria = this.iEstudianteService.buscarPorNombreCriteria("Martha");
 //		 System.out.println(estudianteBuscadoCriteria);
 		
-		List<Estudiante> estudianteBuscadoCriteriaAndOr = this.iEstudianteService.buscarPorNombreCriteriaAndOr("", "", "F");
-		 System.out.println(estudianteBuscadoCriteriaAndOr);
+//		List<Estudiante> estudianteBuscadoCriteriaAndOr = this.iEstudianteService.buscarPorNombreCriteriaAndOr("", "", "F");
+//		 System.out.println(estudianteBuscadoCriteriaAndOr);
 		 
+//		int estuNum = this.iEstudianteService.eliminarPorApellido("Portovelo");
+//		System.out.println(estuNum);
+//		
+//		int estuNum2 = this.iEstudianteService.actualizarPorApellido("Mideros", "Roberto");
+//		System.out.println(estuNum2);
 	}
 
 }

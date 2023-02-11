@@ -30,12 +30,14 @@ public interface IEstudianteService {
 	public Estudiante buscarPorNombreNamedNativeQueryTyped(String nombre);
 	
 	//------------------------------------------------------------------------------------------
+	// Retornos con más de un elemento:
 	// Para obtener más de un resultado, por ejemplo, todos los estudiantes que se llamen "Juan"
 	public List<Estudiante> buscarPorNombreQueryList(String nombre);
 	
 	// Obtener de todos los estudiantes con un mismo nombre, el primer registro
 	public Estudiante buscarPorNombreQueryListFirst(String nombre);
 
+	//------------------------------------------------------------------------------------------
 	// DTO:
 	public EstudianteDTO buscarPorNombreTypedQueryDTO(String nombre);
 
@@ -43,5 +45,10 @@ public interface IEstudianteService {
 	// CRITERIA:
 	public Estudiante buscarPorNombreCriteria(String nombre);
 	public List<Estudiante> buscarPorNombreCriteriaAndOr(String nombre, String apellido, String genero);
+	
+	//------------------------------------------------------------------------------------------
+	// QUERYS de ELIMINAR Y ACTUALIZAR 
+	public int eliminarPorApellido(String apellido);
+	public int actualizarPorApellido(String apellido, String nombre);
 
 }
