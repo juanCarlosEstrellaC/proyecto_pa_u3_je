@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.Hotel;
 import com.example.demo.service.IEstudianteService;
 
 @SpringBootApplication
@@ -22,21 +23,13 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-//		 EstudianteDTO estudianteBuscadoDTO = this.iEstudianteService.buscarPorNombreTypedQueryDTO("Martha");
-//		 System.out.println(estudianteBuscadoDTO);
-		 
-//		 Estudiante estudianteBuscadoCriteria = this.iEstudianteService.buscarPorNombreCriteria("Martha");
-//		 System.out.println(estudianteBuscadoCriteria);
 		
-//		List<Estudiante> estudianteBuscadoCriteriaAndOr = this.iEstudianteService.buscarPorNombreCriteriaAndOr("", "", "F");
-//		 System.out.println(estudianteBuscadoCriteriaAndOr);
-		 
-//		int estuNum = this.iEstudianteService.eliminarPorApellido("Portovelo");
-//		System.out.println(estuNum);
-//		
-//		int estuNum2 = this.iEstudianteService.actualizarPorApellido("Mideros", "Roberto");
+		
+//		int estuNum2 = this.iEstudianteService.actualizarPorPais("Colombia", "F");
 //		System.out.println(estuNum2);
+		
+		int estuNum = this.iEstudianteService.eliminarPorPais("Argentina");
+		System.out.println(estuNum);
 	}
 
 }

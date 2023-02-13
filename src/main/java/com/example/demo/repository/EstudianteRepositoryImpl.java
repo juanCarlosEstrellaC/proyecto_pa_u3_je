@@ -226,6 +226,42 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 		return query.executeUpdate(); 
 	}
 
+
+	//------------------------------------------------------------------------------------------
+	// Deber: 2 QUERYS de ELIMINAR Y ACTUALIZAR c/u
+	@Override
+	public int actualizarPorNombre(String nombre, String genero) {
+		Query query = this.entityManager.createQuery("UPDATE Estudiante e SET e.genero =:datoGenero WHERE e.nombre = :datoNombre");
+		query.setParameter("datoNombre", nombre);
+		query.setParameter("datoGenero", genero);
+		return query.executeUpdate(); 
+	}
+	
+
+	@Override
+	public int actualizarPorPais(String pais, String genero) {
+		Query query = this.entityManager.createQuery("UPDATE Estudiante e SET e.genero =:datoGenero WHERE e.pais = :datoPais");
+		query.setParameter("datoGenero", genero);
+		query.setParameter("datoPais", pais);
+		return query.executeUpdate(); 
+	}
+
+	@Override
+	public int eliminarPorNombre(String nombre) {
+		Query query = this.entityManager.createQuery("DELETE FROM Estudiante e WHERE e.nombre = :datoNombre"); //Elimina a todos los estudiantes con apellido X
+		query.setParameter("datoNombre", nombre);
+		return query.executeUpdate(); 	
+	}
+
+	@Override
+	public int eliminarPorPais(String pais) {
+		Query query = this.entityManager.createQuery("DELETE FROM Estudiante e WHERE e.pais = :datoPais"); //Elimina a todos los estudiantes con apellido X
+		query.setParameter("datoPais", pais);
+		return query.executeUpdate(); 
+	}
+	
+	
+
 	
 	
 	

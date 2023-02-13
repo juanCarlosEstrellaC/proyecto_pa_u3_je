@@ -50,5 +50,14 @@ public interface IEstudianteService {
 	// QUERYS de ELIMINAR Y ACTUALIZAR 
 	public int eliminarPorApellido(String apellido);
 	public int actualizarPorApellido(String apellido, String nombre);
+	
+	
+	//------------------------------------------------------------------------------------------
+	// Deber: 2 QUERYS de ELIMINAR Y ACTUALIZAR c/u
+	public int actualizarPorNombre(String nombre, String genero);
+	public int actualizarPorPais(String pais, String genero);
+	
+	public int eliminarPorNombre(String nombre);
+	public int eliminarPorPais(String pais);
 
 }

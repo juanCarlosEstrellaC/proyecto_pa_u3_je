@@ -117,5 +117,28 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	}
 
 	
+	//------------------------------------------------------------------------------------------
+	// Deber: 2 QUERYS de ELIMINAR Y ACTUALIZAR c/u
+	@Override
+	public int actualizarPorNombre(String nombre, String genero) {
+		return this.iEstudianteRepository.actualizarPorNombre(nombre, genero);
+	}
+
+	@Override
+	public int actualizarPorPais(String pais, String genero) {
+		return this.iEstudianteRepository.actualizarPorPais(pais, genero);
+	}
+
+	@Override
+	public int eliminarPorNombre(String nombre) {
+		return this.iEstudianteRepository.eliminarPorNombre(nombre);
+	}
+
+	@Override
+	public int eliminarPorPais(String pais) {
+		return this.iEstudianteRepository.eliminarPorPais(pais);
+	}
+
+	
 
 }
