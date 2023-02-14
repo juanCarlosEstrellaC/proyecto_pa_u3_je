@@ -36,12 +36,9 @@ public class Hotel {
 	
 	@Override
 	public String toString() {
-		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", habitaciones=" + habitaciones
-				+ ", getId()=" + getId() + ", getNombre()=" + getNombre() + ", getDireccion()=" + getDireccion()
-				+ ", getHabitaciones()=" + getHabitaciones() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", habitaciones=" + habitaciones+ "]";
 	}
-	
+		
 		// Get y Set
 		public Integer getId() {
 			return id;

@@ -24,20 +24,28 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
 		// SQL:
 		// SELECT *
-		// FROM Hotel h INNER JOIN Habitacion ha
-		// ON h.hote_id = ha.habi_id_hotel
+		// FROM  Hotel h  INNER JOIN  Habitacion habi
+		// ON  h.hote_id = habi.habi_id_hotel
 
-		// se pone la relación q representa la relación (el nombre de la lista q esta en hotel, o sea habitaciones)
-		// el inner join de JPQL ya no se pone lo del ON del SQL, porque ya está implícito en el @OneToMany de Hotel
-		TypedQuery<Hotel> query = this.entityManager.createQuery(
-				"SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
+		// **OJO**, en comparación con el SQL, para el JPQL en el INNER JOIN, no se pone la Clase Habitación, después del "INNER JOIN", 
+		// ie, NO se pone:
+		// 					SELECT h FROM Hotel h INNER JOIN Habitacion habi
+		// ya que se pone el nombre de la variable que representa la relación @OneToMany de la Clase Hotel, que sería la lista de habitaciones.
+		// que es parte de el mismo hotel, por eso se lo llama con el "h.". Ie, Se pone:
+		// 					SELECT h FROM Hotel h INNER JOIN h.habitaciones
+		// 
+		// Además, en la sentencia JPQL a diferencia del SQL, ya no se pone la parte del "ON", porque ya está implícita dicha relación en variable
+		// que representa la relación @OneToMany de la Clase Hotel
+		
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		
 		// para traerlo bajo demanda:
 		List<Hotel> listaHoteles = query.getResultList();
 		
+		// ************************* CÓMO FUNCIONA EL SIZE PARA QUE NO ME DE ERROR LAZY????????????????????***************************
 		for (Hotel hotel : listaHoteles) {
-			hotel.getHabitaciones().size();   // XQ EL SIZe??????????????????????????
+			hotel.getHabitaciones().size();   
 		}
 		
 		return listaHoteles;
