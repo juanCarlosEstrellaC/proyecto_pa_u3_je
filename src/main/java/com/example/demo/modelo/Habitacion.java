@@ -36,7 +36,7 @@ public class Habitacion {
 	
 	@Override
 	public String toString() {
-		return "Habitacion [id=" + id + ", numero=" + numero +  "]";
+		return "Habitacion [id=" + id + ", numero=" + numero +  "]"; // PARA QUE NO SE HAGA UN BUCLE, EL TO STRING SIN EL Hotel hotel.
 	}
 		// Get y Set
 		public Integer getId() {

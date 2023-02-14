@@ -34,7 +34,6 @@ public class Hotel {
 	private List<Habitacion> habitaciones;
 	
 	
-	
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", habitaciones=" + habitaciones
@@ -42,7 +41,6 @@ public class Hotel {
 				+ ", getHabitaciones()=" + getHabitaciones() + ", getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
 	
 		// Get y Set
 		public Integer getId() {
