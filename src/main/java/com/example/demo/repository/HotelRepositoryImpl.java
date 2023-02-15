@@ -28,7 +28,7 @@ public class HotelRepositoryImpl implements IHotelRepository {
 		// ON  h.hote_id = habi.habi_id_hotel
 
 		// **OJO**, en comparación con el SQL, para el JPQL en el INNER JOIN, no se pone la Clase Habitación, después del "INNER JOIN", 
-		// ie, NO se pone:
+		// ie, NO se pone:	
 		// 					SELECT h FROM Hotel h INNER JOIN Habitacion habi
 		// ya que se pone el nombre de la variable que representa la relación @OneToMany de la Clase Hotel, que sería la lista de habitaciones.
 		// que es parte de el mismo hotel, por eso se lo llama con el "h.". Ie, Se pone:
@@ -45,7 +45,9 @@ public class HotelRepositoryImpl implements IHotelRepository {
 		
 		// ************************* CÓMO FUNCIONA EL SIZE PARA QUE NO ME DE ERROR LAZY????????????????????***************************
 		for (Hotel hotel : listaHoteles) {
-			hotel.getHabitaciones().size();   
+			// .size() es un artificio para decirle a Jakarta que voy a usar la lista. No propiamente me devuelve el número de elementos.
+			// cualquier método que interaccione con todos los elementos de la lista, me funcionará.
+			hotel.getHabitaciones().size();   // jakarta interpreta q se van a usar los elementos de la lista, no solo con el .size
 		}
 		
 		return listaHoteles;
@@ -62,27 +64,10 @@ public class HotelRepositoryImpl implements IHotelRepository {
 				"SELECT h FROM Hotel h LEFT JOIN h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		
-		// para traerlo bajo demanda:
-		List<Hotel> listaHoteles = query.getResultList();
+
 		
-		for (Hotel hotel : listaHoteles) {
-			List<Habitacion> listaTmp = new ArrayList<> ();
-			for (Habitacion ha : hotel.getHabitaciones()) {
-				if (ha.getTipo().equals(tipoHabitacion)) {
-					listaTmp.add(ha);
-				}
-				hotel.setHabitaciones(listaTmp);
-			}
-			
-//			if (condition) {
-//				hotel.getHabitaciones().size();   // XQ EL SIZe??????????????????????????
-//
-//			} else {
-//
-//			}
-		}
+		return query.getResultList();
 		
-		return listaHoteles;
 	}
 
 	@Override
@@ -114,7 +99,67 @@ public class HotelRepositoryImpl implements IHotelRepository {
 
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
+		query.setParameter("datoTipo", tipoHabitacion);
+		
+		// para traerlo bajo demanda:
+		return query.getResultList();	
+		}
+
+	
+	// JOINS SIN PARÁMETROS
+	@Override
+	public List<Hotel> buscarHotelOuterLeftJoin() {
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN  h.habitaciones ha", Hotel.class);
+		List<Hotel> listaHoteles = query.getResultList();
+//		for (Hotel hotel : listaHoteles) {
+//			hotel.getHabitaciones().size();
+//		}
+
+		return listaHoteles;
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterRightJoin() {
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h RIGHT JOIN  h.habitaciones ha", Hotel.class);
+		List<Hotel> listaHoteles = query.getResultList();
+//		for (Hotel hotel : listaHoteles) {
+//			hotel.getHabitaciones().size();
+//		}
+
+		return listaHoteles;
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterFullJoin() {
 		return null;
 	}
 
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

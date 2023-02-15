@@ -39,4 +39,21 @@ public class HotelServiceImpl implements IHotelService{
 		return this.iHotelRepository.buscarHotelJoinFetch(tipoHabitacion);
 	}
 
+	
+	// JOINS SIN PARAMETROS
+	@Override
+	public List<Hotel> buscarHotelOuterLeftJoin() {
+		return this.iHotelRepository.buscarHotelOuterLeftJoin();
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterRightJoin() {
+		return this.iHotelRepository.buscarHotelOuterRightJoin();
+	}
+
+	@Override
+	public List<Hotel> buscarHotelOuterFullJoin() {
+		return this.iHotelRepository.buscarHotelOuterFullJoin();
+	}
+
 }

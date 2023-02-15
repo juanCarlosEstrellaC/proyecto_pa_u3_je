@@ -11,4 +11,9 @@ public interface IHotelService {
 	public List<Hotel> buscarHotelOuterRightJoin(String tipoHabitacion);
 	public List<Hotel> buscarHotelOuterFullJoin(String tipoHabitacion);
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion);
+	
+	// JOINS SIN PARAMETROS
+	public List<Hotel> buscarHotelOuterLeftJoin();
+	public List<Hotel> buscarHotelOuterRightJoin();
+	public List<Hotel> buscarHotelOuterFullJoin();
 }
