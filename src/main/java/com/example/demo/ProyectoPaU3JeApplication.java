@@ -9,10 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.modelo.Habitacion;
 import com.example.demo.modelo.Hotel;
+import com.example.demo.repository.IHotelRepository;
 import com.example.demo.service.IHabitacionService;
 import com.example.demo.service.IHotelService;
-
-import jakarta.persistence.FetchType;
 
 @SpringBootApplication
 public class ProyectoPaU3JeApplication implements CommandLineRunner {
@@ -22,60 +21,85 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IHabitacionService iHabitacionService;
-
+	
+		
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU3JeApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		List<Hotel> listaHotel1 = this.iHotelService.buscarHotelInnerJoin("VIP");
-		List<Hotel> listaHotel2 = this.iHotelService.buscarHotelOuterLeftJoin();
-//		List<Hotel> listaHotel4 = this.iHotelService.buscarHotelOuterFullJoin("VIP");
-		List<Hotel> listaHotel5 = this.iHotelService.buscarHotelJoinFetch("VIP");
-
-		// Para traer BAJO DEMANDA:
-		// 1. Clase padre = Hotel: fetch = FetchType.LAZY
-		// 2. En el la clase Repositorio para el padre, se implementa manualmente el método, con el artificio del .size()
-		// 3. Para imprimir sin causar un bucle, en Clase hija = Habitación: toString sin el objeto de la relación de la clase padre.
-
-		
-		//INNER:
-//		for (Hotel hotel : listaHotel1) {
+	
+//		//---------------------------------------------INNER--------------------------------------------------------------------------
+//		System.out.println("INNER");
+//		List<Hotel> listaHotelInner = this.iHotelService.buscarHotelInnerJoin("VIP");
+//		for (Hotel hotel : listaHotelInner) {			
 //			for (Habitacion habitacion : hotel.getHabitaciones()) {
 //				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero());
 //			}
 //		}
-		
-		
-//		//fetch:
-//		for (Hotel hotel : listaHotel5) {
+//		System.out.println("");
+//
+//			// Metodo de Prueba para ejemplificar el Traer bajo demanda:
+//			System.out.println("Ejemplo 1: traer bajo demanda");
+//			Hotel hotelPrueba = this.iHotelService.metodoDePrueba();
+//			System.out.println(hotelPrueba);
+//			System.out.println("");
+//
+//			
+//			// Metodo de Prueba para ejemplificar que el método me devuelva un String y no solo un Hotel, cambiando el JPQL y el método.
+//			System.out.println("Metodo que devuelve String");
+//			String nombreHotelPrueba = this.iHotelService.metodoRetornaNombreYNoUnObjeto();
+//			System.out.println(nombreHotelPrueba);
+//			System.out.println("");
+
+			
+//		// Soluciono con un Join Fetch la inicialización perezosa
+//		// ------------------------------------------  JOIN FETCH --------------------------------------------------------
+//		// **********************ME PARECE QUE HAY LEFT, RIGHT, FULL JOIN FETCH ***********************************
+//		System.out.println("JOIN FETCH");
+//		List<Hotel> listaJoinFetch = this.iHotelService.buscarHotelJoinFetch("VIP");
+//		for (Hotel hotel : listaJoinFetch) {
 //			for (Habitacion habitacion : hotel.getHabitaciones()) {
 //				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero()+ " TIPO "+ habitacion.getTipo());
 //			}
 //		}
+//		System.out.println("");
+
 		
-		//LEFT JOIN SIN PARAMETROS:
+//		//LEFT JOIN SIN PARAMETROS:
+//		System.out.println("Left Join");
+//		List<Hotel> listaHotel2 = this.iHotelService.buscarHotelOuterLeftJoin();
 //		for (Hotel hotel : listaHotel2) {
 //			System.out.println(hotel.getNombre());
 //			for (Habitacion habi : hotel.getHabitaciones()) {
 //				System.out.println(habi.getNumero());
 //			}
 //		}
+//		System.out.println("");
 		
-		//LEFT JOIN SIN PARAMETROS:
-//		List<Habitacion> listaHabi = this.iHabitacionService.buscarHotelOuterLeftJoin();
+//		//LEFT JOIN SIN PARAMETROS:
+//		List<Habitacion> listaHabitaciones = this.iHabitacionService.buscarHabitacionOuterLeftJoin();
 //
-//		for (Habitacion ha : listaHabi) {
-//			System.out.println( ha!= null ? ha.getNumero(): null);
-////			for (Habitacion habi : hotel.getHabitaciones()) {
-////				System.out.println(habi.getNumero());
-////			}
+//		for (Habitacion habitacion : listaHabitaciones) {
+//			System.out.println( habitacion != null ? habitacion.getNumero(): null);
 //		}
 		
 		
 //		//RIGHT JOIN SIN PARAMETROS:
+//		List<Habitacion> listaHabiRight = this.iHabitacionService.buscarHabitacionOuterRightJoin();
+//
+//		for (Habitacion ha : listaHabiRight) {
+//			System.out.println( ha != null ? ha.getNumero(): null);
+//		}
+		
+////		//LEFT JOIN SIN PARAMETROS:
+//		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelOuterRightJoin();
+//		for (Hotel hotel : listaHotel3) {
+//			System.out.println(hotel != null ? hotel.getNombre(): null);
+//		}
+		
+		//RIGHT JOIN SIN PARAMETROS:
 //		List<Habitacion> listaHabiRight = this.iHabitacionService.buscarHotelOuterRightJoin();
 //
 //		for (Habitacion ha : listaHabiRight) {
@@ -84,26 +108,6 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 ////				System.out.println(habi.getNumero());
 ////			}
 //		}
-		
-//		//LEFT JOIN SIN PARAMETROS:
-//		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelOuterRightJoin();
-//
-//		for (Hotel hotel : listaHotel3) {
-//			System.out.println(hotel!= null ? hotel.getNombre(): null);
-////			for (Habitacion habi : hotel.getHabitaciones()) {
-////				System.out.println(habi.getNumero());
-////			}
-//		}
-		
-		//RIGHT JOIN SIN PARAMETROS:
-		List<Habitacion> listaHabiRight = this.iHabitacionService.buscarHotelOuterRightJoin();
-
-		for (Habitacion ha : listaHabiRight) {
-			System.out.println( ha != null ? ha.getNumero(): null);
-//			for (Habitacion habi : hotel.getHabitaciones()) {
-//				System.out.println(habi.getNumero());
-//			}
-		}
 		
 	}
 

@@ -14,11 +14,28 @@ public class HotelServiceImpl implements IHotelService{
 	@Autowired 
 	private IHotelRepository iHotelRepository;
 	
+	// INNER, LEFT, RIGHT, FULL Y JOIN FETCH 
 	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
 		return this.iHotelRepository.buscarHotelInnerJoin(tipoHabitacion);
 	}
 
+		// Métodos de prueba y ensayo:
+		@Override
+		public Hotel metodoDePrueba() {
+			return this.iHotelRepository.metodoDePrueba();
+		}
+
+		@Override
+		public String metodoRetornaNombreYNoUnObjeto() {
+			return this.iHotelRepository.metodoRetornaNombreYNoUnObjeto();
+		}
+		
+	@Override
+	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
+		return this.iHotelRepository.buscarHotelJoinFetch(tipoHabitacion);
+	}	
+		
 	@Override
 	public List<Hotel> buscarHotelOuterLeftJoin(String tipoHabitacion) {
 		return this.iHotelRepository.buscarHotelOuterLeftJoin(tipoHabitacion);
@@ -34,10 +51,6 @@ public class HotelServiceImpl implements IHotelService{
 		return this.iHotelRepository.buscarHotelOuterFullJoin(tipoHabitacion);
 	}
 
-	@Override
-	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
-		return this.iHotelRepository.buscarHotelJoinFetch(tipoHabitacion);
-	}
 
 	
 	// JOINS SIN PARAMETROS
@@ -55,5 +68,9 @@ public class HotelServiceImpl implements IHotelService{
 	public List<Hotel> buscarHotelOuterFullJoin() {
 		return this.iHotelRepository.buscarHotelOuterFullJoin();
 	}
+
+	
+	
+	
 
 }

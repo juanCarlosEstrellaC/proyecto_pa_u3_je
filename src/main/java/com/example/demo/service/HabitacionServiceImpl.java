@@ -15,18 +15,18 @@ public class HabitacionServiceImpl implements IHabitacionService{
 	private IHabitacionRepository iHabitacionRepository;
 	
 	@Override
-	public List<Habitacion> buscarHotelOuterLeftJoin() {
-		return this.iHabitacionRepository.buscarHotelOuterLeftJoin();
+	public List<Habitacion> buscarHabitacionOuterLeftJoin() {
+		return this.iHabitacionRepository.buscarHabitacionOuterLeftJoin();
 	}
 
 	@Override
-	public List<Habitacion> buscarHotelOuterRightJoin() {
-		return this.iHabitacionRepository.buscarHotelOuterRightJoin();
+	public List<Habitacion> buscarHabitacionOuterRightJoin() {
+		return this.iHabitacionRepository.buscarHabitacionOuterRightJoin();
 	}
 
 	@Override
-	public List<Habitacion> buscarHotelOuterFullJoin() {
-		return this.iHabitacionRepository.buscarHotelOuterFullJoin();
+	public List<Habitacion> buscarHabitacionOuterFullJoin() {
+		return this.iHabitacionRepository.buscarHabitacionOuterFullJoin();
 	}
 
 }

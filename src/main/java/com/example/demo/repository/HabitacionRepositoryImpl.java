@@ -20,7 +20,7 @@ public class HabitacionRepositoryImpl implements IHabitacionRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Habitacion> buscarHotelOuterLeftJoin() {
+	public List<Habitacion> buscarHabitacionOuterLeftJoin() {
 		TypedQuery<Habitacion> query = this.entityManager.createQuery("SELECT ha FROM Hotel h LEFT JOIN  h.habitaciones ha", Habitacion.class);
 		List<Habitacion> listaHoteles = query.getResultList();
 //		for (Hotel hotel : listaHoteles) {
@@ -31,13 +31,13 @@ public class HabitacionRepositoryImpl implements IHabitacionRepository {
 	}
 
 	@Override
-	public List<Habitacion> buscarHotelOuterRightJoin() {
+	public List<Habitacion> buscarHabitacionOuterRightJoin() {
 		TypedQuery<Habitacion> query = this.entityManager.createQuery("SELECT ha FROM Hotel h RIGHT JOIN  h.habitaciones ha", Habitacion.class);
 		return query.getResultList();	
 	}
 
 	@Override
-	public List<Habitacion> buscarHotelOuterFullJoin() {
+	public List<Habitacion> buscarHabitacionOuterFullJoin() {
 		return null;
 	}
 

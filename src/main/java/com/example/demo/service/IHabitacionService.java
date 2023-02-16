@@ -7,7 +7,7 @@ import com.example.demo.modelo.Hotel;
 
 public interface IHabitacionService {
 
-	public List<Habitacion> buscarHotelOuterLeftJoin();
-	public List<Habitacion> buscarHotelOuterRightJoin();
-	public List<Habitacion> buscarHotelOuterFullJoin();
+	public List<Habitacion> buscarHabitacionOuterLeftJoin();
+	public List<Habitacion> buscarHabitacionOuterRightJoin();
+	public List<Habitacion> buscarHabitacionOuterFullJoin();
 }
