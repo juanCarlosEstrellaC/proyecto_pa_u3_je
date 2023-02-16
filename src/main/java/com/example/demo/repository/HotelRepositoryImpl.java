@@ -111,13 +111,15 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	 */
 	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
+		// Es un Hotel INNER JOIN Habitaciones, que me devuelve los Hoteles:
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		
 		// Traer bajo demanda la lista de Hoteles:
+		// Para traer bajo demanda a un atributo, hago uso de un método que lo ocupe.
 		List<Hotel> listaHoteles = query.getResultList();
 		for (Hotel hotel : listaHoteles) {
-			// a. Puedo usar el toString();
+			// a. Puedo usar el toString(), si tiene para la impresión a la lista de habitaciones, sino no funcionará.
 			hotel.toString();
 			
 			// b. Puedo usar el size():
@@ -203,11 +205,13 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	@Override
 	public List<Hotel> buscarHotelOuterRightJoin() {
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM  Hotel h  RIGHT JOIN  h.habitaciones ha", Hotel.class);
-		List<Hotel> listaHoteles = query.getResultList();
+		List<Hotel> listaHoteles = query.getResultList(); 
 		// Para traerlo bajo demanda
-		for (Hotel hotel : listaHoteles) {
-			hotel.getHabitaciones().size();
-		}
+//		for (Hotel hotel : listaHoteles) {
+//		
+//			hotel.getHabitaciones().size();
+//			
+//		}
 		return listaHoteles;
 	}
 
