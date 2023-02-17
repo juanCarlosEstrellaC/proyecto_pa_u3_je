@@ -20,16 +20,7 @@ public class HotelServiceImpl implements IHotelService{
 		return this.iHotelRepository.buscarHotelInnerJoin(tipoHabitacion);
 	}
 
-		// Métodos de prueba y ensayo:
-		@Override
-		public Hotel metodoDePrueba() {
-			return this.iHotelRepository.metodoDePrueba();
-		}
-
-		@Override
-		public String metodoRetornaNombreYNoUnObjeto() {
-			return this.iHotelRepository.metodoRetornaNombreYNoUnObjeto();
-		}
+		
 		
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
@@ -37,36 +28,36 @@ public class HotelServiceImpl implements IHotelService{
 	}	
 		
 	@Override
-	public List<Hotel> buscarHotelOuterLeftJoin(String tipoHabitacion) {
-		return this.iHotelRepository.buscarHotelOuterLeftJoin(tipoHabitacion);
+	public List<Hotel> buscarHotelLeftJoin(String tipoHabitacion) {
+		return this.iHotelRepository.buscarHotelLeftJoin(tipoHabitacion);
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterRightJoin(String tipoHabitacion) {
-		return this.iHotelRepository.buscarHotelOuterRightJoin(tipoHabitacion);
+	public List<Hotel> buscarHotelRightJoin(String tipoHabitacion) {
+		return this.iHotelRepository.buscarHotelRightJoin(tipoHabitacion);
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterFullJoin(String tipoHabitacion) {
-		return this.iHotelRepository.buscarHotelOuterFullJoin(tipoHabitacion);
+	public List<Hotel> buscarHotelFullJoin(String tipoHabitacion) {
+		return this.iHotelRepository.buscarHotelFullJoin(tipoHabitacion);
 	}
 
 
 	
 	// JOINS SIN PARAMETROS
 	@Override
-	public List<Hotel> buscarHotelOuterLeftJoin() {
-		return this.iHotelRepository.buscarHotelOuterLeftJoin();
+	public List<Hotel> buscarHotelLeftJoin() {
+		return this.iHotelRepository.buscarHotelLeftJoin();
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterRightJoin() {
-		return this.iHotelRepository.buscarHotelOuterRightJoin();
+	public List<Hotel> buscarHotelRightJoin() {
+		return this.iHotelRepository.buscarHotelRightJoin();
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterFullJoin() {
-		return this.iHotelRepository.buscarHotelOuterFullJoin();
+	public List<Hotel> buscarHotelFullJoin() {
+		return this.iHotelRepository.buscarHotelFullJoin();
 	}
 
 	

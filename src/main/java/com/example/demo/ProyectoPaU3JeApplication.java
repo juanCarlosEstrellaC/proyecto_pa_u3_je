@@ -30,48 +30,33 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 	
-		//---------------------------------------------INNER--------------------------------------------------------------------------
-		System.out.println("INNER");
-		List<Hotel> listaHotelInner = this.iHotelService.buscarHotelInnerJoin("VIP");
-		for (Hotel hotel : listaHotelInner) {			
-			for (Habitacion habitacion : hotel.getHabitaciones()) {
-				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero());
-			}
-		}
-		System.out.println("");
-//
-//			// Metodo de Prueba para ejemplificar el Traer bajo demanda:
-//			System.out.println("Ejemplo 1: traer bajo demanda");
-//			Hotel hotelPrueba = this.iHotelService.metodoDePrueba();
-//			System.out.println(hotelPrueba);
-//			System.out.println("");
-//
-//			
-//			// Metodo de Prueba para ejemplificar que el método me devuelva un String y no solo un Hotel, cambiando el JPQL y el método.
-//			System.out.println("Metodo que devuelve String");
-//			String nombreHotelPrueba = this.iHotelService.metodoRetornaNombreYNoUnObjeto();
-//			System.out.println(nombreHotelPrueba);
-//			System.out.println("");
-//
-//			
-//		// Soluciono con un Join Fetch la inicialización perezosa del Inner Join.
+//		//---------------------------------------------INNER--------------------------------------------------------------------------
+//		System.out.println("INNER");
+//		List<Hotel> listaHotelInner = this.iHotelService.buscarHotelInnerJoin("VIP");
+//		for (Hotel hotel : listaHotelInner) {			
+//			for (Habitacion habitacion : hotel.getHabitaciones()) {
+//				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero()+ " Tipo "+ habitacion.getTipo());
+//			}
+//		}
+//		System.out.println("");
+//		
 //		// ------------------------------------------  JOIN FETCH --------------------------------------------------------
-//		// **********************ME PARECE QUE HAY LEFT, RIGHT, FULL JOIN FETCH ***********************************
 //		System.out.println("JOIN FETCH");
 //		List<Hotel> listaJoinFetch = this.iHotelService.buscarHotelJoinFetch("VIP");
 //		for (Hotel hotel : listaJoinFetch) {
 //			for (Habitacion habitacion : hotel.getHabitaciones()) {
-//				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero()+ " TIPO "+ habitacion.getTipo());
+//				System.out.println("La habitación de "+ hotel.getNombre()+ " es "+ habitacion.getNumero()+ " Tipo "+ habitacion.getTipo());
 //			}
 //		}
 //		System.out.println("");
-//
-//	//--------------------------------------------------------------------------------------------------------------------------------------
-//		// Más ejercicios usando los mismos métodos que buscaban por tipo de habitación, ahora sin esa condición(mismos métodos que antes, pero en el JPQL sin el WHERE)
-//		// Además, se implementó un repo y service de habitación, y se usa también esos métodos.
+
+//		//************************************************************************************************************
+//		// 1. toString Hotel capado.
+//		// 2. toString Habitación capado -> evita bucles infinitos.
+//		// 3. JPQL con FETCH
 //		
-//		System.out.println("Left Join Hotel");
-//		List<Hotel> listaHotel2 = this.iHotelService.buscarHotelOuterLeftJoin();
+//		System.out.println("Left Join");
+//		List<Hotel> listaHotel2 = this.iHotelService.buscarHotelLeftJoin();
 //		for (Hotel hotel : listaHotel2) {
 //			System.out.println(hotel.getNombre());
 //			for (Habitacion habi : hotel.getHabitaciones()) {
@@ -79,8 +64,44 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 //			}
 //		}
 //		System.out.println("");
+////		//************************************************************************************************************
 //		
+		//************************************************************************************************************
+		// 1. toString Hotel capado.
+		// 2. toString Habitación capado -> evita bucles infinitos.
+		// 3. JPQL con FETCH
+		// 4. Comprobación para que no imprima habitaciones de hoteles null.
+		
+//		System.out.println("Right Join");
+//		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelRightJoin();
+//		for (Hotel hotel : listaHotel3) {
+//			System.out.println(hotel != null ? hotel.getNombre(): null);
+//			if (hotel != null) {
+//				for (Habitacion habi : hotel.getHabitaciones()) {
+//					System.out.println(habi.getNumero());
+//				}
+//			}
+//
+//		}
+//		System.out.println("");
+		
+		System.out.println("Right Join");
+		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelRightJoin();
+		for (Hotel hotel : listaHotel3) {
+			System.out.println(hotel != null ? hotel.getNombre(): null);
+			if (hotel != null) {
+				for (Habitacion habi : hotel.getHabitaciones()) {
+					System.out.println(habi.getNumero());
+				}
+			}
+
+		}
+		System.out.println("");
+//		//************************************************************************************************************
+
+
 //		// Obtengo los nombres de las habitaciones del left join entre hotel y habitacion. La que sea null, me retorna null.
+		
 //		System.out.println("Left Join Habitaciones");
 //		List<Habitacion> listaHabitaciones1 = this.iHabitacionService.buscarHabitacionOuterLeftJoin();
 //		for (Habitacion habitacion : listaHabitaciones1) {
@@ -97,14 +118,7 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 //		}
 //		System.out.println("");
 		
-		
-//**************************************************************************DA ERROR DE NULO.************************************
-//		System.out.println("Right Join");
-//		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelOuterRightJoin();
-//		for (Hotel hotel : listaHotel3) {
-//			System.out.println(hotel != null ? hotel.getNombre(): null);
-//		}
-//		System.out.println("");
+
 
 		
 //		List<Habitacion> listaHabitaciones3 = this.iHabitacionService.buscarHabitacionOuterRightJoin();

@@ -111,47 +111,24 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	 */
 	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
-		// Es un Hotel INNER JOIN Habitaciones, que me devuelve los Hoteles:
+		// Hotel INNER JOIN Habitaciones, que me devuelve los Hoteles:
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		
 		// Traer bajo demanda la lista de Hoteles:
-		// Para traer bajo demanda a un atributo, hago uso de un método que lo ocupe.
+		// Para traer bajo demanda a un atributo, hago uso de un método que lo ocupe lo que quiero traer bajo demanda.
 		List<Hotel> listaHoteles = query.getResultList();
 		for (Hotel hotel : listaHoteles) {
-			// a. Puedo usar el toString(), si tiene para la impresión a la lista de habitaciones, sino no funcionará.
-			hotel.toString();
-			
+			// a. Puedo usar el toString(), si tiene para la impresión a la lista de habitaciones, sino no funcionará. En este caso no lo tiene,
+			// por lo que uso .size()			
 			// b. Puedo usar el size():
 			hotel.getHabitaciones().size();   
 		}
 		return listaHoteles;
 	}
 	
-		// Metodo de Prueba para ejemplificar el Traer bajo demanda:
-		@Override
-		public Hotel metodoDePrueba() {
-			String a = "Marriot";
-			TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h  FROM Hotel h WHERE h.nombre = :datoQuemado", Hotel.class);
-			query.setParameter("datoQuemado", a);
-			
-			// Traer bajo demanda al Objeto Hotel:
-			Hotel myHotel = query.getSingleResult();
-			myHotel.toString();
-			return myHotel;
-		}
 		
-		// Metodo de Prueba para ejemplificar que el método me devuelva un String y no solo un Hotel, cambiando el JPQL y el método.
-		@Override
-		public String metodoRetornaNombreYNoUnObjeto() {
-		String a = "Marriot";
-		TypedQuery<String> query = this.entityManager.createQuery("SELECT h.nombre  FROM Hotel h WHERE h.nombre = :datote", String.class); // Importante decir de qué tipo será el retorno.
-		query.setParameter("datote", a);
-		return query.getSingleResult();
-	}
-	
 		
-	// Soluciono con un Join Fetch la inicialización perezosa
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
@@ -169,21 +146,21 @@ public class HotelRepositoryImpl implements IHotelRepository {
 
 	 */
 	@Override
-	public List<Hotel> buscarHotelOuterLeftJoin(String tipoHabitacion) {
+	public List<Hotel> buscarHotelLeftJoin(String tipoHabitacion) {
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN  h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterRightJoin(String tipoHabitacion) {
+	public List<Hotel> buscarHotelRightJoin(String tipoHabitacion) {
 		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h RIGHT JOIN FETCH h.habitaciones ha WHERE ha.tipo =: datoTipo", Hotel.class);
 		query.setParameter("datoTipo", tipoHabitacion);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterFullJoin(String tipoHabitacion) {
+	public List<Hotel> buscarHotelFullJoin(String tipoHabitacion) {
 		return null;
 	}
 
@@ -191,32 +168,33 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	//------------------------------------------------------------------------------------------------------------
 	// JOINS SIN PARÁMETROS
 	@Override
-	public List<Hotel> buscarHotelOuterLeftJoin() {
-		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN  h.habitaciones ha", Hotel.class);
+	public List<Hotel> buscarHotelLeftJoin() {
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN FETCH  h.habitaciones ha", Hotel.class);
 		List<Hotel> listaHoteles = query.getResultList();
 		// Para traerlo bajo demanda
-		for (Hotel hotel : listaHoteles) {
-			hotel.getHabitaciones().size();
-		}
+//		for (Hotel hotel : listaHoteles) {
+//			hotel.getHabitaciones().size();
+//		}
 
 		return listaHoteles;
 	}
 
+	// tengo 2 caminos: 1 artificio, 2 Join Fetch
 	@Override
-	public List<Hotel> buscarHotelOuterRightJoin() {
-		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM  Hotel h  RIGHT JOIN  h.habitaciones ha", Hotel.class);
+	public List<Hotel> buscarHotelRightJoin() {
+		TypedQuery<Hotel> query = this.entityManager.createQuery("SELECT h FROM  Hotel h  RIGHT JOIN FETCH h.habitaciones ha", Hotel.class);
 		List<Hotel> listaHoteles = query.getResultList(); 
-		// Para traerlo bajo demanda
+		// Para traerlo bajo demanda, tomando en cuenta que pueden haber valores nulos.
 //		for (Hotel hotel : listaHoteles) {
-//		
+//			if (hotel != null) {
 //			hotel.getHabitaciones().size();
-//			
+//			}
 //		}
 		return listaHoteles;
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterFullJoin() {
+	public List<Hotel> buscarHotelFullJoin() {
 		return null;
 	}
 
