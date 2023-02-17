@@ -85,49 +85,43 @@ public class ProyectoPaU3JeApplication implements CommandLineRunner {
 //		}
 //		System.out.println("");
 		
-		System.out.println("Right Join");
-		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelRightJoin();
-		for (Hotel hotel : listaHotel3) {
-			System.out.println(hotel != null ? hotel.getNombre(): null);
-			if (hotel != null) {
-				for (Habitacion habi : hotel.getHabitaciones()) {
-					System.out.println(habi.getNumero());
-				}
-			}
-
-		}
-		System.out.println("");
+//		System.out.println("Right Join");
+//		List<Hotel> listaHotel3 = this.iHotelService.buscarHotelRightJoin();
+//		for (Hotel hotel : listaHotel3) {
+//			System.out.println(hotel != null ? hotel.getNombre(): null);
+//			if (hotel != null) {
+//				for (Habitacion habi : hotel.getHabitaciones()) {
+//					System.out.println(habi.getNumero());
+//				}
+//			}
+//
+//		}
+//		System.out.println("");
 //		//************************************************************************************************************
 
 
 //		// Obtengo los nombres de las habitaciones del left join entre hotel y habitacion. La que sea null, me retorna null.
 		
-//		System.out.println("Left Join Habitaciones");
-//		List<Habitacion> listaHabitaciones1 = this.iHabitacionService.buscarHabitacionOuterLeftJoin();
-//		for (Habitacion habitacion : listaHabitaciones1) {
-//			System.out.println( habitacion != null ? habitacion.getNumero(): null);
-//		}
-//		System.out.println("");
-//
-//		
-//		// Obtengo los nombres de las habitaciones del left join entre hotel y habitacion. La que sea null, me retorna null.
+		System.out.println("Left Join Habitaciones");
+		List<Habitacion> listaHabitaciones1 = this.iHabitacionService.buscarHabitacionOuterLeftJoin();
+		for (Habitacion habitacion : listaHabitaciones1) {
+			System.out.println( habitacion != null ? habitacion.getNumero(): null);
+		}
+		System.out.println("");
+
+		
+		// Obtengo los nombres de las habitaciones del left join entre hotel y habitacion. La que sea null, me retorna null.
 //		System.out.println("Right Join");
 //		List<Habitacion> listaHabitaciones2 = this.iHabitacionService.buscarHabitacionOuterRightJoin();
 //		for (Habitacion ha : listaHabitaciones2) {
 //			System.out.println( ha != null ? ha.getNumero(): null);
+//			if (ha != null) {
+//				System.out.println(ha.getHotel());
+//			}
+//			
 //		}
 //		System.out.println("");
 		
-
-
-		
-//		List<Habitacion> listaHabitaciones3 = this.iHabitacionService.buscarHabitacionOuterRightJoin();
-//		for (Habitacion ha : listaHabitaciones3) {
-//			//System.out.println( ha != null ? ha.getNumero(): null);
-//			
-//			// aqui toca desactivarle del toString de Hotel las habitaciones:
-//			System.out.println( ha != null ? ha.getHotel(): null);
-//		}
 		
 	}
 

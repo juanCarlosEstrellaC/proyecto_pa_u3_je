@@ -199,11 +199,6 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	}
 
 	
-
-
-
-	
-	
 }
 
 

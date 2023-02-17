@@ -23,14 +23,7 @@ public class HabitacionRepositoryImpl implements IHabitacionRepository {
 	// Dado los elementos de mi DB, por el JPQL, de cajón en la lista de Habitaciones tendré una habitación null.
 	public List<Habitacion> buscarHabitacionOuterLeftJoin() {
 		TypedQuery<Habitacion> query = this.entityManager.createQuery("SELECT ha FROM Hotel h LEFT JOIN   h.habitaciones ha", Habitacion.class);
-//		return query.getResultList();
-		List<Habitacion> listaHoteles = query.getResultList(); 
-		for (Habitacion hotel : listaHoteles) {
-			
-			hotel.getHotel();
-			
-		}
-		return listaHoteles;
+		return query.getResultList();
 	}
 
 	@Override
@@ -45,5 +38,5 @@ public class HabitacionRepositoryImpl implements IHabitacionRepository {
 	public List<Habitacion> buscarHabitacionOuterFullJoin() {
 		return null;
 	}
-
+	
 }
