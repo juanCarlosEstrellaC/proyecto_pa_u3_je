@@ -142,27 +142,27 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	// CRITERIA:
 	@Override
 	public Estudiante buscarPorNombreCriteria(String nombre) {
-		// creamos la fabrica:
+		// 1. creamos la fabrica:
 		CriteriaBuilder myBuilder = this.entityManager.getCriteriaBuilder();
 		
-		// declaro el tipo de retorno del SQL:
+		// 2. declaro el tipo de retorno del SQL:
 		CriteriaQuery<Estudiante> myQuery = myBuilder.createQuery(Estudiante.class);
 		
 		// comenzamos a crear el "SQL"
-		// defino la tabla destino, ie, el FROM-Root:
+		// 3. defino la tabla destino, ie, el FROM-Root:
 		Root<Estudiante> miTablaFrom = myQuery.from(Estudiante.class); // La tabla será de tipo Estudiante. (FROM estudinte)
 		
-		// Las condiciones WHERE se conocen en Criteria API Query como predicados.
+		// 4. Las condiciones WHERE se conocen en Criteria API Query como predicados.
 		// el segundo argumento es con el que tengo que comparar.
 		Predicate condicion1 = myBuilder.equal(miTablaFrom.get("nombre"), nombre); // e.nombre = :datoNombre
-		
-		// Declaro mi Query
+																				   // El primer "nombre" viene del nombre del atributo de la Clase
+		// 5. Declaro mi Query
 		myQuery.select(miTablaFrom).where(condicion1);
 		// Declarado/Armado mi Query
 		
-		// La ejecución del query lo realizamos con cualquier tipo conocido. Recomendado TypedQuery
-		TypedQuery<Estudiante> mySQL = this.entityManager.createQuery(myQuery);
-		
+		// 6. La ejecución del query lo realizamos con cualquier tipo conocido. Recomendado TypedQuery
+		TypedQuery<Estudiante> mySQL = this.entityManager.createQuery(myQuery);  //sin el parámetro de Estudiante.class. porque en el paso 2 especifico el tipo de dato de retorno
+												
 		
 		return mySQL.getSingleResult();
 	}
