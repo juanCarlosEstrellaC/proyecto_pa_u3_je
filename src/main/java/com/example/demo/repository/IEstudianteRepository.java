@@ -7,14 +7,15 @@ import com.example.demo.modelo.dto.EstudianteDTO;
 
 public interface IEstudianteRepository {
 	
+	//CRUD simple:
 	public void ingresar(Estudiante estudiante);
+	public void actualizar(Estudiante estudiante);
+	public Estudiante buscar(Integer id);
+	public void borrar(Integer id);
 	
-	//Query:
+	// Querys complejos, la mayoría de Buscar
+	// Query:
 	public Estudiante buscarPorNombreQuery(String nombre);
-	public Estudiante buscarPorApellidoQuery(String apellido);
-	public Estudiante buscarPorGeneroQuery(String genero);
-	public Estudiante buscarPorCedulaQuery(String cedula);
-	public Estudiante buscarPorCiudadQuery(String ciudad);
 	
 	// Typed:
 	public Estudiante buscarPorNombreTypedQuery(String nombre);
